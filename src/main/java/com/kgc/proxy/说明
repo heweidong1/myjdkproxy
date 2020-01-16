@@ -1,0 +1,27 @@
+通过次方法创建的代理文件：
+package com.kgc.google;
+import com.kgc.dao.KgcDao;
+import com.kgc.dao.CoustomIInvocationHandler;
+import java.lang.reflect.Method;
+public class $Proxy implements KgcDao{
+	private CoustomIInvocationHandler  h;
+	public $Proxy(CoustomIInvocationHandler h){
+		this.h= h;
+	}
+	public Integer get() throws Exception{
+		Object[] args = null;
+		Method method2 =  Class.forName("com.kgc.dao.KgcDao").getMethod("get");
+		return (Integer) h.invoke(method2,args);
+	}
+	public String query(String p0) throws Exception{
+		Object[] args =new Object[]{ p0};
+		Method method2 =  Class.forName("com.kgc.dao.KgcDao").getMethod("query",String.class);
+		return (String) h.invoke(method2,args);
+	}
+	public void queryName() throws Exception{
+		Object[] args = null;
+		Method method2 =  Class.forName("com.kgc.dao.KgcDao").getMethod("queryName");
+		h.invoke(method2,args);
+	}
+}
+设计思路：通过该代理对象，当调用某个方法的时候，会调用h对象中的方法
